@@ -5,7 +5,10 @@ import path from "path";
 import { defineConfig } from "vite";
 
 // https://vite.dev/config/
+const base = process.env.VITE_PUBLIC_BASE_URL ?? "./";
+
 export default defineConfig({
+  base,
   plugins: [react(), vlyPlugin(), tailwindcss()],
   resolve: {
     alias: {
