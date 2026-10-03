@@ -32,12 +32,19 @@ const schema = defineSchema(
       role: v.optional(roleValidator), // role of the user. do not remove
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // add other tables here
-
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    // Add other tables here.
+    flowstyles: defineTable({
+      metadata: v.optional(
+        v.object({
+          platform: v.optional(v.string()),
+          languageNotes: v.optional(v.string()),
+        })
+      ),
+      screenshotBase64: v.string(),
+      prompt: v.string(),
+      replies: v.array(v.string()),
+      createdAt: v.number(),
+    }).index("by_createdAt", ["createdAt"]),
   },
   {
     schemaValidation: false,
